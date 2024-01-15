@@ -25,7 +25,7 @@ Features include:
 
 The Laravel framework has a few system requirements. You will need to make sure your server meets the following requirements:
 
-* PHP 7.4
+* PHP >= 7.2.5
 * BCMath PHP Extension
 * Ctype PHP Extension
 * JSON PHP Extension
@@ -75,7 +75,7 @@ location / {
    * mysql -u root -p, if using Vagrant: mysql -u homestead -psecret    
    * From the projects root run cp .env.example .env
    * Configure your .env file
-   * Run composer -W update from the projects root folder
+   * Run composer update from the projects root folder
    * Run npm install & npm run dev from the projects root folder
    * From the projects root folder run sudo chmod -R 755 ../orservices
    * From the projects root folder run php artisan key:generate
