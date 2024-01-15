@@ -1,8 +1,10 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
 
-class AzureMySQLSeeder extends Seeder
+class SqlDumpSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -10,7 +12,7 @@ class AzureMySQLSeeder extends Seeder
      * @return void
      */
     public function run() {
-        $path = base_path().'/database/dump/azure_mysql.sql';
+        $path = base_path().'/database/dump/ms_server.sql';
         $sql = file_get_contents($path);
         DB::unprepared($sql);
     }
