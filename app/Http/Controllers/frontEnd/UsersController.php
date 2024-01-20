@@ -248,11 +248,11 @@ class UsersController extends Controller
                     $from = env('MAIL_FROM_ADDRESS');
                     $name = env('MAIL_FROM_NAME');
                     $email = new Mail();
-                    $email->setFrom($from, $name);
+                    $email->from($from, $name);
                     // $subject = 'A Suggested Change was Submitted at ' . $site_name;
                     $subject = $ActivationEmail->subject;
 
-                    $email->setSubject($subject);
+                    $email->subject($subject);
 
                     // $body = $request->message;
                     $data = array(
@@ -279,7 +279,7 @@ class UsersController extends Controller
                     // $contact_email_list = Email::select('email_info')->pluck('email_info')->toArray();
 
                     // foreach ($contact_email_list as $key => $contact_email) {
-                    $email->addTo($request->email, $username);
+                    $email->to($request->email, $username);
                     // }
                     $response = $sendgrid->send($email);
                     if ($response->statusCode() == 401) {

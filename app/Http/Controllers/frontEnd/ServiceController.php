@@ -5767,10 +5767,10 @@ class ServiceController extends Controller
                 // $from_phone = env('MAIL_FROM_PHONE');
 
                 $email = new Mail();
-                $email->setFrom($from, $name);
+                $email->from($from, $name);
                 // $subject = 'A Suggested Change was Submitted at ' . $site_name;
                 $subject = 'New Taxonomy Term Added to ORServices';
-                $email->setSubject($subject);
+                $email->subject($subject);
                 $user = Auth::user();
 
                 $message = '<html><body>';
@@ -5853,10 +5853,10 @@ class ServiceController extends Controller
                 // $from_phone = env('MAIL_FROM_PHONE');
 
                 $email = new Mail();
-                $email->setFrom($from, $name);
+                $email->from($from, $name);
                 // $subject = 'A Suggested Change was Submitted at ' . $site_name;
                 $subject = 'New Taxonomy Term Added to ORServices';
-                $email->setSubject($subject);
+                $email->subject($subject);
                 $user = Auth::user();
 
                 $message = '<html><body>';

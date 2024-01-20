@@ -132,9 +132,9 @@ class HomeController extends Controller
         try {
             $key = $request->get('sendgridApiKey');
             $email = new \SendGrid\Mail\Mail();
-            $email->setFrom(env('MAIL_FROM_ADDRESS'), 'test');
-            $email->setSubject('test');
-            $email->addTo('example@example.com', 'test');
+            $email->from(env('MAIL_FROM_ADDRESS'), 'test');
+            $email->subject('test');
+            $email->to('example@example.com', 'test');
             $email->addContent("text/plain", 'test');
 
             $sendgrid = new \SendGrid($key);

@@ -131,10 +131,10 @@ class RegisterController extends Controller
                 // $from_phone = env('MAIL_FROM_PHONE');
 
                 $email = new Mail();
-                $email->setFrom($from, $name);
+                $email->from($from, $name);
                 // $subject = 'A Suggested Change was Submitted at ' . $site_name;
                 $subject = 'Registraion';
-                $email->setSubject($subject);
+                $email->subject($subject);
 
                 $body = $request->message;
 
@@ -171,11 +171,11 @@ class RegisterController extends Controller
 
                 if ($EmailTemplate) {
                     $email = new Mail();
-                    $email->setFrom($from, $name);
+                    $email->from($from, $name);
                     // $subject = 'A Suggested Change was Submitted at ' . $site_name;
                     $subject = $EmailTemplate->subject;
 
-                    $email->setSubject($subject);
+                    $email->subject($subject);
 
                     // $body = $request->message;
                     $data = array(
@@ -202,7 +202,7 @@ class RegisterController extends Controller
                     // $contact_email_list = Email::select('email_info')->pluck('email_info')->toArray();
 
                     // foreach ($contact_email_list as $key => $contact_email) {
-                    $email->addTo($request->email, $username);
+                    $email->to($request->email, $username);
                     // }
                     $response = $sendgrid->send($email);
                     if ($response->statusCode() == 401) {

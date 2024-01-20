@@ -84,9 +84,9 @@ class SuggestController extends Controller
             // $from_phone = env('MAIL_FROM_PHONE');
 
             $email = new Mail();
-            $email->setFrom($from, $name);
+            $email->from($from, $name);
             $subject = 'A Suggested Change was Submitted at ' . $site_name;
-            $email->setSubject($subject);
+            $email->subject($subject);
 
             $body = $request->suggest_content;
 
