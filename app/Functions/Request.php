@@ -52,7 +52,6 @@ class Request implements \ArrayAccess
         $this->data = $data;
         $this->is_post = $is_post;
         $this->relations = $relations;
-
     }
 
     private function init()

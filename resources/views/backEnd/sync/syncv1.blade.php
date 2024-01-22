@@ -11,7 +11,7 @@
         </h5>
     </div>
     <div class="form-group " style="width:100%;float:left">
-        <label for="airtable_api_key_input" class=" control-label col-md-3">Airtable API Key</label>
+        <label for="airtable_api_key_input" class=" control-label col-md-3">Airtable PAT</label>
         <div class="col-md-6">
             <input class="form-control" type="text" name="airtable_api_key_input1" id="airtable_api_key_input1" value="{{'***********'.substr($airtablekeyinfo->api_key, -4)}}" readonly />
             <input class="form-control" type="text" name="airtable_api_key_input" id="airtable_api_key_input" value="{{$airtablekeyinfo->api_key}}" style="display: none" required />

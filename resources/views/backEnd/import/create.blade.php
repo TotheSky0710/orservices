@@ -36,7 +36,7 @@ Add Source
                         </div>
                     </div>
                     <div class="form-group {{ $errors->has('airtable_api_key') ? 'has-error' : ''}}" id="airtable_key_div">
-                        {!! Form::label('airtable_api_key', 'Airtable API Key', ['class' => 'col-sm-3 control-label']) !!}
+                        {!! Form::label('airtable_api_key', 'Airtable PAT', ['class' => 'col-sm-3 control-label']) !!}
                         <div class="col-sm-6">
                             {!! Form::text('airtable_api_key', null, ['class' => 'form-control']) !!}
                             {!! $errors->first('airtable_api_key', '<p class="help-block">:message</p>') !!}

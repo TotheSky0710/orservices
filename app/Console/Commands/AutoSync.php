@@ -136,7 +136,11 @@ class AutoSync extends Command
                     }
                     if ($importData && $importData->import_type == 'airtable') {
                         $airtableKeyInfo = Airtablekeyinfo::whereId($importData->airtable_api_key)->first();
-                        $response = Http::get('https://api.airtable.com/v0/' . $airtableKeyInfo->base_url . '/organizations?api_key=' . $airtableKeyInfo->api_key);
+                        
+                        $response = Http::withHeaders([
+                            'Authorization' => 'Bearer ' . $airtableKeyInfo->api_key,
+                            'Content-Type' => 'application/json'
+                        ])->get('https://api.airtable.com/v0/' . $airtableKeyInfo->base_url . '/organizations');
                         if ($response->status() != 200) {
                             Log::error("Autosync : Airtable key or base id is invalid. Please enter valid information and try again.");
                             return;

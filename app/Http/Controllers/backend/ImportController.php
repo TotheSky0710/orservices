@@ -146,8 +146,11 @@ class ImportController extends Controller
                     'api_key' => $request->airtable_api_key,
                     'base' => $request->airtable_base_id,
                 ));
-
-                $response = Http::get('https://api.airtable.com/v0/' . $request->airtable_base_id . '/organizations?api_key=' . $request->airtable_api_key);
+     
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $request->airtable_api_key,
+                    'Content-Type' => 'application/json'
+                ])->get('https://api.airtable.com/v0/' . $request->airtable_base_id . '/organizations');
                 if ($response->status() != 200) {
                     Session::flash('message', 'Airtable key or base id is invalid. Please enter valid information.');
                     Session::flash('status', 'error');
@@ -303,9 +306,13 @@ class ImportController extends Controller
                     ]);
                 }
 
-                $response = Http::get('https://api.airtable.com/v0/' . $request->airtable_base_id . '/organizations?api_key=' . $request->airtable_api_key);
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $request->airtable_api_key,
+                    'Content-Type' => 'application/json'
+                ])->get('https://api.airtable.com/v0/' . $request->airtable_base_id . '/organizations');
+                
                 if ($response->status() != 200) {
-                    Session::flash('message', 'Airtable key or base id is invalid. Please enter valid information.');
+                    Session::flash('message', '2Airtable key or base id is invalid. Please enter valid information.');
                     Session::flash('status', 'error');
                     return redirect()->back()->withInput();
                 }
@@ -524,9 +531,13 @@ class ImportController extends Controller
             if ($importData && $importData->import_type == 'airtable') {
                 $organization_tag = $importData->organization_tags;
                 $airtableKeyInfo = Airtablekeyinfo::whereId($importData->airtable_api_key)->first();
-                $response = Http::get('https://api.airtable.com/v0/' . $airtableKeyInfo->base_url . '/organizations?api_key=' . $airtableKeyInfo->api_key);
+                $response = Http::withHeaders([
+                    'Authorization' => 'Bearer ' . $airtableKeyInfo->api_key,
+                    'Content-Type' => 'application/json'
+                ])->get('https://api.airtable.com/v0/' . $airtableKeyInfo->base_url . '/organizations');
+
                 if ($response->status() != 200) {
-                    Session::flash('message', 'Airtable key or base id is invalid. Please enter valid information and try again.');
+                    Session::flash('message', '3Airtable key or base id is invalid. Please enter valid information and try again.');
                     Session::flash('status', 'error');
                     return redirect()->back()->withInput();
                 }
